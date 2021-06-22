@@ -76,12 +76,10 @@ function getKey(dictionary, key, message) {
     }
 }
 
-
 function myfunc() {
     const form = document.forms['search'];
     var infotype = form['type'].value;
     if (infotype === 'mle'){
-        //alert("i is mle")
         var search = form['usersearch'].value.replaceAll(" ", "+");
         console.log(search)
         alert(search)
@@ -89,12 +87,11 @@ function myfunc() {
         form['type'].value = 'mle'
     }
     else if (infotype === 'definition'){
-        alert("i is definition");
         var search = form['usersearch'].value.replaceAll(" ", "");
         definition(search);
     }
     else if (infotype === 'rhyme'){
-        alert("i is rhyme")
+        alert("rhyme")
     }
 
 }
