@@ -10,8 +10,10 @@ function meansLike(search){
             console.log(data);
             const div = document.getElementById("tofill")
             toDisplay = meansLikeTemplate(data)
-            div.innerHTML = toDisplay
+            div.innerHTML = `<div class = "jumbotron"style="background-color: lightblue"> ${toDisplay} </div>`
+
         };
+        
     });
     request.open('GET', 'https://api.datamuse.com/words?ml='+ search);
     request.send();
@@ -20,14 +22,17 @@ function meansLike(search){
 function meansLikeTemplate(data) {
     let html = `<ol>`
     for (let i = 0; i < 10; i++) {
-        html += `<li> ${data[i]['word']}`
+        html += `<li><strong><a href = "#top"> ${data[i]['word']}</a></strong></li>`
     }
     html += `</ol>`
+    
     return html
     
+
 }
 
 function definition(search) {
+    const div = document.getElementById("tofill")
     const request = new XMLHttpRequest();
     request.addEventListener('readystatechange', () => {
         if (request.readyState === 4 && request.status === 200){
@@ -35,11 +40,14 @@ function definition(search) {
             const data = JSON.parse(request.responseText);
             console.log(data);
             
-            alert(data)
-            const div = document.getElementById("tofill")
+            //alert(data)
+            
             toDisplay = definitionTemplate(data)
-            div.innerHTML += toDisplay
+            div.innerHTML = `<div class = "jumbotron" style="background-color: lightgreen"> ${toDisplay} </div?`
             }
+        else if(request.readyState === 4 && request.status === 404){
+            div.innerHTML = `<div class = "jumbotron" style="background-color: red"><h1><strong>No definitions found</strong></h1></div>`
+        }
     })
     request.open('GET', 'https://api.dictionaryapi.dev/api/v2/entries/en_US/'+search, true );
     request.send()
@@ -76,22 +84,23 @@ function getKey(dictionary, key, message) {
     }
 }
 
+
 function myfunc() {
     const form = document.forms['search'];
     var infotype = form['type'].value;
     if (infotype === 'mle'){
+        //alert("mle")
         var search = form['usersearch'].value.replaceAll(" ", "+");
         console.log(search)
-        alert(search)
+        //alert(search)
         meansLike(search);
         form['type'].value = 'mle'
     }
     else if (infotype === 'definition'){
+        //alert("definition");
         var search = form['usersearch'].value.replaceAll(" ", "");
         definition(search);
     }
-    else if (infotype === 'rhyme'){
-        alert("rhyme")
-    }
+
 
 }
