@@ -10,22 +10,30 @@
     <script src="info.js"></script>
 </head>
 <body>
-    <div class ="container pb-5 col-6">
-        <div >
-            <form onsubmit="myfunc(); return false" id="search">
-                <label for="usersearch">Search something</label> <br>
-                <input type="text" class ="form-control"id = "usersearch">
-                <select class="form-select" name="type" id="selection">
-                    <option value="definition">Definition</option>
-                    <option value="mle">Means like</option>
-                </select>
-                <input class ="btn btn-primary" type="submit" value="Search">
+    <div class ="container pb-5">
+        <div class="row">
+            <div class = "col-8" style = "border-right: 1px dashed #333; ">
+                <form onsubmit="myfunc(); return false" id="search">
+                    <label for="usersearch"><h2>Search something</h2></label> <br>
+                    <input type="text" class ="form-control"id = "usersearch">
+                    <select class="form-select" name="type" id="selection">
+                        <option value="definition">Definition</option>
+                        <option value="mle">Means like</option>
+                    </select>
+                    <input class ="btn btn-primary" type="submit" value="Search">
                 
-            </form>
+                </form>
+                <div id="tofill"></div>
+            </div>
+            
+            <div class= "col-4" style = "border-right: 1px dashed #333; border-bottom: 1px dashed black;">
+                <h4>Recent searches</h4>
+                <div id="recent"></div>
+
+            </div>
         </div>
-        <div id="tofill">
-    
-        </div>
+
+        
 
     </div>
 
